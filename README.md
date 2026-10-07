@@ -40,6 +40,7 @@ _translation/         # 翻译工作目录（精翻流程中间产物，保留�
 ## 翻译规范
 
 - 代码块、终端输出与原文逐字节一致（含原文即有的笔误），代码注释随章翻译
+- 清除上游为 Gitbook 添加的转义符（`\.` `\/` `\(` `\)` `\_` 等），按 mkdocs/CommonMark 规则重新判断是否需要转义；反引号内的内容（如 Windows 路径 `%USERPROFILE%\go\bin`）不动
 - 术语全书统一，术语表保存在用户级 `~/.config/baoyu-skills/baoyu-translate/EXTEND.md`，新术语随章节回填
 - mock / stub / spy / goroutine / channel / commit 等约定保留英文，首现加注
 - 校验脚本：译文发布前逐块比对原文代码块与链接（见 `_translation/` 流程）

@@ -83,7 +83,7 @@ module example.com/hello
 go 1.16
 ```
 
-这个文件向 `go` 工具链描述了你的代码的一些关键信息。如果你打算发布自己的应用，还要在这里写明代码的下载地址以及依赖信息。模块名 example\.com\/hello 通常就是能找到并下载这个模块的 URL。为了兼容我们后面会用到的工具，请确保模块名里带个点，比如 example\.com/hello 里 .com 的那个点。眼下你的模块文件保持这个最小样子就挺好。想深入了解模块，可以查阅 [Golang 文档中的参考章节](https://golang.org/doc/modules/gomod-ref)。现在测试应该能跑了（哪怕在 Go 1.16 上），我们可以回到测试和学习 Go 本身了。
+这个文件向 `go` 工具链描述了你的代码的一些关键信息。如果你打算发布自己的应用，还要在这里写明代码的下载地址以及依赖信息。模块名 example.com/hello 通常就是能找到并下载这个模块的 URL。为了兼容我们后面会用到的工具，请确保模块名里带个点，比如 example.com/hello 里 .com 的那个点。眼下你的模块文件保持这个最小样子就挺好。想深入了解模块，可以查阅 [Golang 文档中的参考章节](https://golang.org/doc/modules/gomod-ref)。现在测试应该能跑了（哪怕在 Go 1.16 上），我们可以回到测试和学习 Go 本身了。
 
 在后面的章节里，每到一个新文件夹，你都需要先运行 `go mod init SOMENAME`，然后才能执行 `go test` 或 `go build` 之类的命令。
 
