@@ -1,6 +1,6 @@
 site_name: Learn Go with Tests 中文版
 site_description: 用测试驱动开发（TDD）学习 Go 语言 —— quii/learn-go-with-tests 中文翻译
-site_url: ""
+site_url: https://zeta2333.github.io/learn-go-with-tests-zh/
 
 repo_url: https://github.com/quii/learn-go-with-tests
 repo_name: quii/learn-go-with-tests
