@@ -1,0 +1,50 @@
+site_name: Learn Go with Tests 中文版
+site_description: 用测试驱动开发（TDD）学习 Go 语言 —— quii/learn-go-with-tests 中文翻译
+site_url: ""
+
+repo_url: https://github.com/quii/learn-go-with-tests
+repo_name: quii/learn-go-with-tests
+
+theme:
+  name: material
+  language: zh
+  features:
+    - content.code.copy
+    - navigation.sections
+    - navigation.top
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+
+plugins:
+  - search:
+      lang: zh
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.mark
+  - tables
+  - toc:
+      permalink: true
+
+copyright: >
+  原著 <a href="https://github.com/quii/learn-go-with-tests">Learn Go with Tests</a>
+  © Chris James（quii），MIT 协议；中文翻译遵循同一协议发布。
+
+nav:
+  - 首页: index.md
+  - Go 基础:
+      - Hello, World: hello-world.md
