@@ -18,7 +18,8 @@ jobs:
         run: |
           curl -fsSL -o docs/assets/mutex-misuse.png "https://i.imgur.com/SWYNpwm.png"
           curl -fsSL -o docs/assets/diff-tool.png "https://i.imgur.com/0MoNdva.png"
-          file docs/assets/mutex-misuse.png docs/assets/diff-tool.png
+          curl -fsSL -o docs/assets/extract-variable.png "https://i.imgur.com/4sgUG7L.png"
+          file docs/assets/mutex-misuse.png docs/assets/diff-tool.png docs/assets/extract-variable.png
       - name: 提交入库
         run: |
           git config user.name "github-actions[bot]"

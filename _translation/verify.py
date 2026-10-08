@@ -44,7 +44,10 @@ def strip_go_comments(code):
 
 
 def norm(code, lang):
-    return strip_go_comments(code) if lang.strip() == 'go' else code
+    if lang.strip() == 'go':
+        code = strip_go_comments(code)
+    # Gitbook 自动链接泄漏（<http://...>）允许清理
+    return code.replace('<http://', 'http://')
 
 
 def clean_url(u):
@@ -54,6 +57,8 @@ def clean_url(u):
 def urls(text):
     prose = re.sub(r'^ {0,3}```.*?^ {0,3}```', '', text, flags=re.S | re.M)
     prose = re.sub(r'`[^`\n]*`', '', prose)
+    # 外链图片允许本地化（assets/），不计入必须保留的 URL
+    prose = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', prose)
     inline = re.findall(r'\]\((https?://[^)\s]+)\)?', prose)
     rest = re.sub(r'\]\([^)\s]*\)', '', prose)
     bare = re.findall(r'https?://[^\s)\]>"`]+', rest)
