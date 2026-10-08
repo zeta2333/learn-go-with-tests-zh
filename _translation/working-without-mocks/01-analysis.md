@@ -4,10 +4,10 @@
 
 - **主题**：全书最重要的论述章。论点：mock/stub/spy 把"对依赖行为的假设"临时编码进每个测试，假设未经系统验证，威胁测试套件价值；主张改用 **fake（有状态的真身替身）+ contract（契约：可对 fake 和真实依赖重复执行的行为规约）**，获得可验证、可复用、可演进的测试替身。
 - **结构**：tl;dr → 测试替身入门（stub/spy/mock/fake 分类学）→ stub 和 mock 的问题（六 API 项目案例：flaky 测试、测试策略困境、集成测试缺口）→ fake 登场（服务层用例、用户故事、mermaid 时序图、断言状态而非 spying）→ 封装收益与维护成本 → **contract 详解**（API1Contract 代码、用同一 contract 测内存版与真实实现）→ 软件演进流程（6 步）→ 开发者体验 → 装饰器覆盖非正常路径 → "额外代码是浪费吗" → 与 TDD 的关系 → 测试数据库之问（"Don't mock the database driver"）→ 总结（Farley 引文、渐进主义、模块化、一等公民依赖）。
-- **前置**：Mocking 章、依赖注入章（均已翻译）；引用 Anti-patterns、Scaling Acceptance Tests（**未翻译**，前向引用）。
+- **前置**：Mocking 章、依赖注入章（均已翻译）；引用 Anti-patterns（未翻译）与 Scaling Acceptance Tests（已翻译：`docs/scaling-acceptance-tests.md`《扩展验收测试》）。
 - **代码块 16 个**：15 个 Go + 1 个 mermaid 时序图。Go 块内 `//` 注释随章翻译（verify 允许）；**mermaid 块必须逐字节保留**（verify 对非 go 块全等比较，标签保持英文）。
 - **图片 3 张**：全部为 i.imgur.com 外链（架构图、集成测试图、fakes-and-contracts 图），按规则原样保留 URL，alt 文字翻译。
-- **外链/跨章链接 13 个**：quii.gitbook.io ×4（mocking、DI、anti-patterns、scaling×2）、quii.dev ×2、go-fakes-and-contracts 仓库 ×2、GOOS 官网、YouTube（Rich Hickey "Simple Made Easy"）、imgur ×3。**注意：本章是首个源文含 quii.gitbook.io 绝对链接的章节**，verify 的 URL 完整性检查（urls(src) − urls(tra)）要求这些 URL 在译文中原样出现，与"跨章链接改写为本地 .md"规则冲突 → 处理：URL 保留，未翻译章节在**链接文字**处加"（英文原版）"注记（详见 02-prompt）。
+- **外链/跨章链接 13 个**：quii.gitbook.io ×4（mocking、DI、anti-patterns、scaling×2）、quii.dev ×2、go-fakes-and-contracts 仓库 ×2、GOOS 官网、YouTube（Rich Hickey "Simple Made Easy"）、imgur ×3。**注意：本章是首个源文含 quii.gitbook.io 绝对链接的章节**，verify 的 URL 完整性检查（urls(src) − urls(tra)）要求这些 URL 在译文中原样出现，与"跨章链接改写为本地 .md"规则冲突 → 处理：URL 全部保留；仅未翻译的 anti-patterns 在**链接文字**处加"（英文原版）"注记，已翻译章节（mocking / DI / scaling ×2）链接文字用中文章名（详见 02-prompt）。
 
 ## Terminology（新术语定名）
 

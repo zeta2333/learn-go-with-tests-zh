@@ -21,9 +21,9 @@ H1 定为：**不用 mock 的测试**（主控指定）。
 
 本章是首个源文含 quii.gitbook.io 绝对链接的章节，verify 要求源文全部 URL 在译文中出现。处理如下（与 00-book-prompt 第 2 条的意图对齐）：
 
-1. **URL 一律原样保留**（含 4 个 gitbook 链接）——verify 硬门槛，外链原样保留规则。
-2. 指向**未翻译**章节的链接（Anti-patterns、Scaling Acceptance Tests ×2）：链接文字后加"（英文原版）"，如 `[反模式（英文原版）](…)`，便于终审查找替换。
-3. 指向**已翻译**章节的链接（Mocking、Dependency Injection）：链接文字用中文章名（Mocking 章中文名即"Mocking"；"依赖注入"），报告给主控建议终审统一切换为本地 `mocking.md` / `dependency-injection.md`。
+1. **URL 一律原样保留**（含 4 个 gitbook 链接）——verify 的 URL 完整性检查是硬门槛，gitbook 绝对 URL 按外链处理。跨章链接留待终审统一切换为本地 `.md`（mocking.md / dependency-injection.md / scaling-acceptance-tests.md ×2），届时 verify 的 URL 检查需同步放宽。
+2. 指向**未翻译**章节的链接（仅 Anti-patterns）：链接文字后加"（英文原版）"，即 `[反模式（英文原版）](…)`，便于终审查找替换。
+3. 指向**已翻译**章节的链接（Mocking、Dependency Injection、Scaling Acceptance Tests ×2）：链接文字用中文章名"Mocking"/"依赖注入"/"扩展验收测试"（初判 scaling 未翻译有误，docs/scaling-acceptance-tests.md 实际存在，已更正），URL 暂留 gitbook。
 4. 章首无"本章所有代码"链接（源文即无），不得添加。
 5. 全部外链（quii.dev ×2、GOOS、YouTube、go-fakes-and-contracts ×2、imgur ×3）URL 原样保留。
 
@@ -37,7 +37,7 @@ H1 定为：**不用 mock 的测试**（主控指定）。
 - mermaid 块逐字节一致（英文标签不动）。
 - Go 块仅 `//` 注释随章翻译，其余逐字节一致；`// Output:` 无。
 - `<u>…</u>` 2 处保留；加粗/斜体/嵌套格式（`***…***`）一一对应。
-- Gitbook 转义：源文无；直角引号禁用，用弯引号""。
+- Gitbook 转义：源文无；直角引号「」禁用；双引号沿用样章 hello-world 及多数已发布章节的直引号 " 体例（弯引号""仅部分后期章节使用），此分歧报告主控终审统一。
 
 ## 标题定名
 
