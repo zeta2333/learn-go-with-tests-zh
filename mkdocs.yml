@@ -85,6 +85,7 @@ nav:
       - IO 与排序: io.md
       - 命令行与项目结构: command-line.md
       - Time: time.md
+      - 用 testing/synctest 重访时间: revisiting-time-with-synctest.md
       - WebSockets: websockets.md
   - 问答:
       - OS Exec: os-exec.md
