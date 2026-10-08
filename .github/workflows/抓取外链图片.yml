@@ -19,7 +19,13 @@ jobs:
           curl -fsSL -o docs/assets/mutex-misuse.png "https://i.imgur.com/SWYNpwm.png"
           curl -fsSL -o docs/assets/diff-tool.png "https://i.imgur.com/0MoNdva.png"
           curl -fsSL -o docs/assets/extract-variable.png "https://i.imgur.com/4sgUG7L.png"
-          file docs/assets/mutex-misuse.png docs/assets/diff-tool.png docs/assets/extract-variable.png
+          curl -fsSL -o docs/assets/riya-talk.png "https://i.imgur.com/bbG6z57.png"
+          curl -fsSL -o docs/assets/farley-at-structure.png "https://i.imgur.com/nPwpihG.png"
+          curl -fsSL -o docs/assets/separation-of-concerns-go.png "https://i.imgur.com/qdY4RJe.png"
+          curl -fsSL -o docs/assets/tdd-top-down-1.png "https://i.imgur.com/pxTaYu4.png"
+          curl -fsSL -o docs/assets/tdd-top-down-2.png "https://i.imgur.com/t5y5opw.png"
+          curl -fsSL -o docs/assets/tdd-top-down-3.png "https://i.imgur.com/UYqd7Cq.png"
+          file docs/assets/*.png | tail -12
       - name: 提交入库
         run: |
           git config user.name "github-actions[bot]"

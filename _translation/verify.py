@@ -59,6 +59,8 @@ def urls(text):
     prose = re.sub(r'`[^`\n]*`', '', prose)
     # 外链图片允许本地化（assets/），不计入必须保留的 URL
     prose = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', prose)
+    # quii.gitbook.io 书内链接允许改写为本站站内链接
+    prose = re.sub(r'https?://quii\.gitbook\.io[^\s)]*', '', prose)
     inline = re.findall(r'\]\((https?://[^)\s]+)\)?', prose)
     rest = re.sub(r'\]\([^)\s]*\)', '', prose)
     bare = re.findall(r'https?://[^\s)\]>"`]+', rest)

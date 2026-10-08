@@ -1,6 +1,6 @@
 # 扩展验收测试
 
-本章是[验收测试入门](https://quii.gitbook.io/learn-go-with-tests/testing-fundamentals/intro-to-acceptance-tests)（英文原版）的后续。[本章的完整代码可以在 GitHub 上找到](https://github.com/quii/go-specs-greet)。
+本章是[验收测试入门](intro-to-acceptance-tests.md)的后续。[本章的完整代码可以在 GitHub 上找到](https://github.com/quii/go-specs-greet)。
 
 验收测试至关重要，它直接决定了你能否以合理的变更成本、有信心地持续演进你的系统。
 
