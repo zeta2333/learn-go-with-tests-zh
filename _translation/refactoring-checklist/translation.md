@@ -136,7 +136,7 @@ func main() {
 
 我们在为应用配置一些 HTTP 客户端。这里有一些_魔法值_，我们可以提取一个变量、给它一个有意义的名字，把 `Timeout` DRY 掉。
 
-![我提取变量时的一张截图](https://i.imgur.com/4sgUG7L.png)
+![我提取变量时的一张截图](assets/extract-variable.png)
 
 现在代码变成了这样
 

@@ -45,7 +45,7 @@
 
 想一想是什么会"惊动"验收测试，逼着它们改：
 
-- 外部行为变化。如果你想改变系统做什么，修改验收测试套件就算不上求之不得，至少也是合理的。
+- 外部行为变化。如果你想改变系统做什么，修改验收测试套件就算不是求之不得，至少也是合理的。
 - 实现细节变化／重构。理想情况下这不应该引起任何改动，就算要改，也该是小改。
 
 但现实中，太经常是后者在逼着验收测试改。改到工程师甚至因为害怕更新测试的工作量，而不敢去改系统了！
@@ -786,7 +786,7 @@ func main() {
 driver := httpserver.Driver{BaseURL: "http://localhost:8080", Client: &client}
 ```
 
-最后，把领域层的代码也收拢到自己的文件夹里也很有帮助。别犯懒，别在项目里搞一个塞满成百上千个毫不相干的类型和函数的 `domain` 文件夹。花点心思琢磨你的领域，把属于一起的想法归到一起。这会让项目更好理解，也会提升你 import 的质量。
+最后，把领域层的代码也收拢进它自己的文件夹，同样很有帮助。别犯懒，别在项目里搞一个塞满成百上千个毫不相干的类型和函数的 `domain` 文件夹。花点心思琢磨你的领域，把属于一起的想法归到一起。这会让项目更好理解，也会提升你 import 的质量。
 
 与其看到
 
@@ -1229,29 +1229,29 @@ quii@Chriss-MacBook-Pro go-specs-greet % tree
 ├── Makefile
 ├── README.md
 ├── adapters
-│   ├── docker.go
-│   ├── grpcserver
-│   │   ├── driver.go
-│   │   ├── greet.pb.go
-│   │   ├── greet.proto
-│   │   ├── greet_grpc.pb.go
-│   │   └── server.go
-│   └── httpserver
-│       ├── driver.go
-│       └── handler.go
+│   ├── docker.go
+│   ├── grpcserver
+│   │   ├── driver.go
+│   │   ├── greet.pb.go
+│   │   ├── greet.proto
+│   │   ├── greet_grpc.pb.go
+│   │   └── server.go
+│   └── httpserver
+│       ├── driver.go
+│       └── handler.go
 ├── cmd
-│   ├── grpcserver
-│   │   ├── Dockerfile
-│   │   ├── greeter_server_test.go
-│   │   └── main.go
-│   └── httpserver
-│       ├── Dockerfile
-│       ├── greeter_server_test.go
-│       └── main.go
+│   ├── grpcserver
+│   │   ├── Dockerfile
+│   │   ├── greeter_server_test.go
+│   │   └── main.go
+│   └── httpserver
+│       ├── Dockerfile
+│       ├── greeter_server_test.go
+│       └── main.go
 ├── domain
-│   └── interactions
-│       ├── greet.go
-│       └── greet_test.go
+│   └── interactions
+│       ├── greet.go
+│       └── greet_test.go
 ├── go.mod
 ├── go.sum
 └── specifications
@@ -1560,7 +1560,7 @@ Dave Farley 给过一条极好的建议：
 
 > 想象一个你能想到的、最不懂技术但理解这个问题领域的人，来读你的验收测试。这些测试应该能让那个人看明白。
 
-这样，规格还能顺便当文档用。它们应该清楚地说明系统该怎么表现。Cucumber 这类工具的立足点正是这个理念：它给你一套 DSL 来把行为捕捉成代码，然后你再把 DSL 转换成系统调用，跟我们这里做的一样。
+这样，规格还能顺便当文档用。它们应该清楚地说明系统该怎么表现。[Cucumber](https://cucumber.io) 这类工具的立足点正是这个理念：它给你一套 DSL 来把行为捕捉成代码，然后你再把 DSL 转换成系统调用，跟我们这里做的一样。
 
 ### 本章覆盖了什么
 
