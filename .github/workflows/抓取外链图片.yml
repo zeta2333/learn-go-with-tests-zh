@@ -1,0 +1,27 @@
+name: 抓取外链图片
+
+# 用途：本地网络不可达的外链图片（如 imgur），由 Actions 服务器代取并提交入库。
+# 新增外链图片时在 steps 里追加 curl 行，然后 gh workflow run 抓取外链图片.yml
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 下载外链图片
+        run: |
+          curl -fsSL -o docs/assets/mutex-misuse.png "https://i.imgur.com/SWYNpwm.png"
+          curl -fsSL -o docs/assets/diff-tool.png "https://i.imgur.com/0MoNdva.png"
+          file docs/assets/mutex-misuse.png docs/assets/diff-tool.png
+      - name: 提交入库
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets
+          git diff --cached --quiet || (git commit -m "assets: 本地化外链图片（imgur，经 Actions 代取）" && git push)

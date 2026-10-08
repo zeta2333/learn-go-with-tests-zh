@@ -34,4 +34,4 @@
 
 ## 图片章节
 
-`html-templates`、`math`、`sync` 含图片：把 `learn-go-with-tests/.gitbook/assets/` 下被引用的图片拷到 `learn-go-with-tests-zh/docs/assets/`，译文里用 `assets/<文件名>` 相对路径引用。
+**一律本地化**：上游 `.gitbook/assets` 的图片拷到 `docs/assets/`（空格改 `-`）；**外链图片（http 开头）也不要保留外链**——把 URL 报给主控，由主控经 GitHub Actions 代取入库（本地网络不可达 imgur 等），拿到文件名后再把译文引用改写为 `assets/<文件名>`。译者报告中必须列出全部外链图片 URL。
