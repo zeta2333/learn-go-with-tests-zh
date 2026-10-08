@@ -2,7 +2,7 @@
 
 **[本章的所有代码都可以在这里找到](https://github.com/quii/learn-go-with-tests/tree/main/json)**
 
-[上一章](https://github.com/quii/learn-go-with-tests/blob/main/http-server.md)（英文原版）里，我们创建了一个 Web 服务器，用来记录玩家赢了多少场比赛。
+[上一章](http-server.md)里，我们创建了一个 Web 服务器，用来记录玩家赢了多少场比赛。
 
 产品负责人提了个新需求：新增一个名为 `/league` 的端点，返回已存储的所有玩家的列表。她希望这个列表以 JSON 格式返回。
 

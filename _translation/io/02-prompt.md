@@ -31,7 +31,7 @@
 ## 代码块纪律
 
 1. 64 个代码块一一对应，非 Go 块逐字节一致；Go 块仅译 `//` 注释。
-2. 需译注释清单：块 1（server.go）的 4 条 doc 注释；`// read again` ×2 → `// 再读一次`；`//etc...` → `// 等等……`。
+2. 需译注释清单：块 1（server.go）的 4 条 doc 注释；`// read again` ×3 → `// 再读一次`；`//etc...` → `// 等等……`。
 3. `//server.go`、`//file_system_store.go`、`//league.go`、`//tape.go`、`//tape_test.go`、`//file_system_store_test.go`、`//server_integration_test.go`、`// main.go` 等文件名提示注释保留原样（与 http-server 章约定一致）。
 4. 无 `// Output:` 注释。
 
