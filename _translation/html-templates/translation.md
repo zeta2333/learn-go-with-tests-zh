@@ -416,7 +416,7 @@ Tags: <ul>{{range .Tags}}<li>{{.}}</li>{{end}}</ul>
 
 有了这套做法，管理 HTML 这种又大又丑的东西时，改动就好打理多了。你可以用 diff 工具查看和管理差异，测试代码也更干净。
 
-![用 diff 工具管理改动](https://i.imgur.com/0MoNdva.png)
+![用 diff 工具管理改动](assets/diff-tool.png)
 
 这其实只是审批测试相当小的一个用法，它可是你测试武器库里一件极其趁手的工具。[Emily Bache](https://twitter.com/emilybache) 有一个[很有意思的视频：她用审批测试给一个零测试的复杂代码库添加了一套覆盖面惊人的测试](https://www.youtube.com/watch?v=zyM2Ep28ED8)。"组合测试"（Combinatorial Testing）绝对值得研究研究。
 

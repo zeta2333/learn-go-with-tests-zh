@@ -231,7 +231,7 @@ func (c *Counter) Inc() {
 
 把 `Lock` 和 `Unlock` 暴露出去，往好了说是让人困惑，往坏了说，一旦使用你这个类型的人开始调用这些方法，可能给你的软件带来极大的危害。
 
-![演示这个 API 的使用者如何错误地改变锁的状态](https://i.imgur.com/SWYNpwm.png)
+![演示这个 API 的使用者如何错误地改变锁的状态](assets/mutex-misuse.png)
 
 *这看起来真是个馊主意*
 
