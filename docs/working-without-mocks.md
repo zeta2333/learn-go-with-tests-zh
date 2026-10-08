@@ -141,7 +141,7 @@ stub、spy 和 mock 带来的挑战尤其多，项目一大，问题就冒头。
 
 我们的应用采用六边形 / 端口与适配器（ports & adapters）架构来组织。领域代码与我们不得不应付的外部乱象是解耦的。所谓“适配器”，实际上就是一些 Go 客户端，把对各个 API 的调用封装了起来。
 
-![系统架构](https://i.imgur.com/6bqovl8.png)
+![系统架构](assets/ports-adapters-architecture.png)
 
 #### 麻烦来了
 
@@ -214,7 +214,7 @@ sequenceDiagram
 
 我们需要的是 **fake**。把依赖建模成有状态的 API、用内存版 fake 实现之后，我们就能写出覆盖面大得多的集成测试，**让我们得以验证真实用例行得通**，而且照样*不必*拉起整个系统，速度几乎与单元测试相当。
 
-![用 fake 做集成测试](https://i.imgur.com/9Q6FMpw.png)
+![用 fake 做集成测试](assets/fake-integration-test.png)
 
 用上 fake，**我们可以基于各个系统的最终状态做断言，而不必依赖复杂的 spying**。我们会问每个 fake：这个客户的记录你这儿是什么？然后断言它们已被更新。这感觉自然多了：如果是人工检查系统，我们也会去查询那些 API 的状态，而不是翻请求日志，看我们是不是发过某个特定的 JSON 载荷。
 
@@ -268,7 +268,7 @@ assert.Equal(t, updatedFakeAPICustomer.SocialSecurityNumber, updatedCustomerRequ
 
 **Contract** 正是达成此事的手段。它帮我们管理对别家系统的种种假设，并让它们白纸黑字、明明白白。比起邮件往来、比没完没了的 Slack 讨论串，明确得多，也有用得多！
 
-![fake 与 contract 示意](https://i.imgur.com/l9aTe2x.png)
+![fake 与 contract 示意](assets/fake-contract.png)
 
 有了 contract，我们就可以放心地把 fake 和真实依赖互换着用。这不仅对搭建测试有用，对本地开发同样有用。
 
