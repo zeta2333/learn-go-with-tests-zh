@@ -701,7 +701,7 @@ if errors.Is(err, ErrInsufficientFunds) {
 
 `errors.Is` 的工作方式是对 `err` 反复调用 [`errors.Unwrap`](https://pkg.go.dev/errors#Unwrap)（它知道怎么把被包装的错误取出来，因为 `fmt.Errorf` 配合 `%w` 产生的值带有 `Unwrap() error` 方法），直到找到匹配项，或者再也没有错误可解包为止。正因如此，在 [Maps](maps.md) 一章的 `assertError` 辅助函数里，你还会看到我们用 `errors.Is` 而不是 `==`——它是个安全的默认选择，对从未被包装过的错误也同样有效。
 
-如果你需要从一条被包装的错误链里提取*特定类型*的错误（而不是与 `ErrInsufficientFunds` 这样的哨兵值做比较），也有一个对应的函数：[`errors.As`](https://pkg.go.dev/errors#As)。[error types](error-types.md) 一章会更深入地讨论这个话题。
+如果你需要从一条被包装的错误链里提取*特定类型*的错误（而不是与 `ErrInsufficientFunds` 这样的哨兵值做比较），也有一个对应的函数：[`errors.As`](https://pkg.go.dev/errors#As)。[error types](https://github.com/quii/learn-go-with-tests/blob/main/error-types.md) 一章（英文原版）会更深入地讨论这个话题，中译收入后此链接会指向译文。
 
 ## 总结
 

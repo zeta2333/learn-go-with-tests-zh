@@ -4,7 +4,7 @@
 
 [插画作者：Denise](https://deniseyu.io/)
 
-> **译注**：本站是《Learn Go with Tests》的中文翻译，基于上游 commit `4675d96` 重译，并将随上游持续更新。官方中文版已多年未跟进，本站希望填补这个空缺。翻译进度与参与方式见 [GitHub 仓库](https://github.com/zeta2333/learn-go-with-tests-zh)。
+> **译注**：本站是《Learn Go with Tests》的中文翻译，基于上游 commit `4675d96` 重译，并将随上游持续更新。官方中文版已多年未跟进，本站希望填补这个空缺。**Go 基础篇 21 章已全部译完**，测试基础、构建应用等篇章随后续批次推进；进度与参与方式见 [GitHub 仓库](https://github.com/zeta2333/learn-go-with-tests-zh)。
 
 ## 支持作者
 

@@ -8,7 +8,8 @@
 
 - 上游 commit：`4675d96` — Simplify error handling in html-templates chapter snippets
 - 起译日期：2026-10-07
-- 已完成：`hello-world`（样章）
+- **已完成：前言 + Go 基础篇全部 21 章（22/42 篇）**
+- 待续：测试基础（4）、构建应用（8）、问答（4）、Meta（2）等
 
 ## 本地预览
 
