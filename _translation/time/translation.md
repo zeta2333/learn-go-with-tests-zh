@@ -995,7 +995,7 @@ wantPrompt := poker.PlayerPrompt + poker.BadPlayerInputErrMsg
 const BadPlayerInputErrMsg = "Bad value received for number of players, please try again with a number"
 ```
 
-最后，我们围绕“发送到 `stdout` 的内容“的测试相当啰嗦，写个断言函数来清爽一下。
+最后，我们围绕“发送到 `stdout` 的内容”的测试相当啰嗦，写个断言函数来清爽一下。
 
 ```go
 func assertMessagesSentToUser(t testing.TB, stdout *bytes.Buffer, messages ...string) {
