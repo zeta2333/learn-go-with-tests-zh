@@ -4,7 +4,7 @@
 
 [插画作者：Denise](https://deniseyu.io/)
 
-> **译注**：本站是《Learn Go with Tests》的中文翻译，基于上游 commit `4675d96` 重译，并将随上游持续更新。官方中文版已多年未跟进，本站希望填补这个空缺。**全书 40 篇已全部译完**（前言 + 六个板块；上游的 contributing 与 chapter template 为贡献者文档，不在翻译范围）。发现翻译问题欢迎到 [GitHub 仓库](https://github.com/zeta2333/learn-go-with-tests-zh)反馈。
+> **译注**：本站是《Learn Go with Tests》的中文翻译，基于上游 commit `4675d96` 重译，并将随上游持续更新。官方中文版已多年未跟进，本站希望填补这个空缺。**39/40 篇已译完并上线**（前言 + 六个板块；仅剩《用 testing/synctest 重访时间》正在收尾。上游的 contributing 与 chapter template 为贡献者文档，不在翻译范围）。发现翻译问题欢迎到 [GitHub 仓库](https://github.com/zeta2333/learn-go-with-tests-zh)反馈。
 
 ## 支持作者
 

@@ -78,6 +78,14 @@ nav:
       - 扩展验收测试: scaling-acceptance-tests.md
       - 不用 mock 的测试: working-without-mocks.md
       - 重构清单: refactoring-checklist.md
+  - 构建应用:
+      - 构建一个应用: app-intro.md
+      - HTTP 服务器: http-server.md
+      - JSON、路由与嵌入: json.md
+      - IO 与排序: io.md
+      - 命令行与项目结构: command-line.md
+      - Time: time.md
+      - WebSockets: websockets.md
   - 问答:
       - OS Exec: os-exec.md
       - Error types: error-types.md
