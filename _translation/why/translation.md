@@ -91,11 +91,46 @@ Lehman 在 70 年代手感火热，又给我们送来一条值得细品的定律
 
 #### 一个 Go 例子
 
-@@CODE1@@
+    func Hello(name, language string) string {
+    
+      if language == "es" {
+         return "Hola, " + name
+      }
+    
+      if language == "fr" {
+         return "Bonjour, " + name
+      }
+      
+      // imagine dozens more languages
+    
+      return "Hello, " + name
+    }
 
 几十个 `if` 语句排在一起怎么看怎么不舒服，而且"特定语言的问候语 + `, ` + `name`"这段拼接逻辑还写重复了。所以我要重构这段代码。
 
-@@CODE2@@
+    func Hello(name, language string) string {
+      	return fmt.Sprintf(
+      		"%s, %s",
+      		greeting(language),
+      		name,
+      	)
+    }
+    
+    var greetings = map[string]string {
+      "es": "Hola",
+      "fr": "Bonjour",
+      //etc..
+    }
+    
+    func greeting(language string) string {
+      greeting, exists := greetings[language]
+      
+      if exists {
+         return greeting
+      }
+      
+      return "Hello"
+    }
 
 这次重构具体用了什么手法其实不重要，重要的是：我没有改变行为。
 
@@ -121,7 +156,14 @@ Lehman 在 70 年代手感火热，又给我们送来一条值得细品的定律
 
 给 `Hello` 函数写的单元测试大概长这样
 
-@@CODE3@@
+    func TestHello(t *testing.T) {
+      got := Hello(“Chris”, es)
+      want := "Hola, Chris"
+    
+      if got != want {
+         t.Errorf("got %q want %q", got, want)
+      }
+    }
 
 在命令行里跑一下 `go test`，就能立刻知道我的重构有没有偷偷改变行为。实际工作中，最好摸清编辑器/IDE 里那个一键跑测试的"魔法按钮"。
 

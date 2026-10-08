@@ -28,7 +28,9 @@ jobs:
           curl -fsSL -o docs/assets/ports-adapters-architecture.png "https://i.imgur.com/6bqovl8.png"
           curl -fsSL -o docs/assets/fake-integration-test.png "https://i.imgur.com/9Q6FMpw.png"
           curl -fsSL -o docs/assets/fake-contract.png "https://i.imgur.com/l9aTe2x.png"
-          file docs/assets/*.png | tail -12
+          curl -fsSL -o docs/assets/triangles-square.jpg "https://i.imgur.com/ela7SVf.jpg"
+          curl -fsSL -o docs/assets/rectangles-square.jpg "https://i.imgur.com/1G6rYqD.jpg"
+          file docs/assets/*.png docs/assets/*.jpg | tail -16
       - name: 提交入库
         run: |
           git config user.name "github-actions[bot]"
