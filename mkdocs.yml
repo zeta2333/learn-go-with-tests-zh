@@ -39,6 +39,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      slugify: !!python/name:markdown.extensions.toc.slugify_unicode
 
 copyright: >
   原著 <a href="https://github.com/quii/learn-go-with-tests">Learn Go with Tests</a>
