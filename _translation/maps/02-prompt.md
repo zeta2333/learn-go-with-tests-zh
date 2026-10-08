@@ -14,11 +14,12 @@
 ## 体例
 
 - 章标题 H1：`Map`（主控指定，保留英文）
-- 小节标题按全书循环体例意译：
+- 小节标题沿用 arrays-and-slices 定稿的既定译法（全书一致）：
   - Write the test first → 先写测试
-  - Try to run the test / Try and run the test → 尝试运行测试
-  - Write the minimal amount of code for the test to run and check the output → 写出让测试运行的最小代码，看看输出
-  - Write enough code to make it pass → 写够让测试通过的代码
+  - Try to run the test / Try and run the test / Try to run test → 试着运行测试
+  - …check the output → 写最少的代码让测试能运行，并检查输出
+  - …check the failing test output → 写最少的代码让测试能运行，并检查失败的测试输出
+  - Write enough code to make it pass → 写足够的代码让测试通过
   - Refactor → 重构
   - Wrapping up → 总结
   - Using a custom type → 使用自定义类型
