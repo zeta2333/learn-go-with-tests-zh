@@ -73,3 +73,13 @@ nav:
       - HTML 模板: html-templates.md
       - 泛型: generics.md
       - 用泛型重访数组与切片: revisiting-arrays-and-slices-with-generics.md
+  - 测试基础:
+      - 验收测试入门: intro-to-acceptance-tests.md
+      - 扩展验收测试: scaling-acceptance-tests.md
+      - 不用 mock 的测试: working-without-mocks.md
+      - 重构清单: refactoring-checklist.md
+  - 问答:
+      - OS Exec: os-exec.md
+      - Error types: error-types.md
+      - Context-aware Reader: context-aware-reader.md
+      - 再探 HTTP Handlers: http-handlers-revisited.md

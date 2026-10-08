@@ -6,7 +6,7 @@
 
 ## 关于扑克，知道这些就够了
 
-关于扑克你不需要懂太多，只要知道：每隔一段时间，所有玩家都需要被告知一个不断上涨的“盲注”（blind）金额。
+关于扑克你不需要懂太多，只要知道：每隔一段时间，都得把一个不断上涨的“盲注”（blind）金额告诉所有玩家。
 
 我们的应用会帮忙记住盲注什么时候该涨、该涨到多少。
 
@@ -53,7 +53,7 @@ func (cli *CLI) readLine() string {
 
 我们想要的是：安排程序在特定的时间间隔后打印盲注金额，间隔取决于玩家人数。
 
-为了收窄要做的事，我们先不管玩家人数这部分，直接假设有 5 个玩家，这样我们要测的就是：_每隔 10 分钟，打印出新的盲注金额_。
+为了收窄范围，我们先不管玩家人数这部分，直接假设有 5 个玩家，这样我们要测的就是：_每隔 10 分钟打印新的盲注金额_。
 
 照例，标准库早已为我们备好了工具：[`func AfterFunc(d Duration, f func()) *Timer`](https://golang.org/pkg/time/#AfterFunc)
 
@@ -63,7 +63,7 @@ func (cli *CLI) readLine() string {
 
 > Duration 表示两个时刻之间经过的时间，以 int64 纳秒数计。
 
-time 库提供了不少常量，让你把这些纳秒乘成更有可读性的值，正适合我们接下来要遇到的场景
+time 库提供了不少常量，让你把这些纳秒乘出更好读一些的值，正适合我们接下来要遇到的场景
 
 ```
 5 * time.Second
@@ -71,7 +71,7 @@ time 库提供了不少常量，让你把这些纳秒乘成更有可读性的值
 
 调用 `PlayPoker` 时，我们会把所有盲注提醒都安排好。
 
-不过测试起来可能有点棘手。我们想验证每个时间段都调度了正确的盲注金额，但看看 `time.AfterFunc` 的签名：它的第二个参数是将要执行的函数。Go 里无法比较函数，所以我们无从测出传进去的是什么函数。因此，我们需要给 `time.AfterFunc` 包上一层，让它接收“什么时间执行”和“打印什么金额”，这样我们才能 spy 它。
+不过测试起来可能有点棘手。我们想验证每个时间段都调度了正确的盲注金额，但看看 `time.AfterFunc` 的签名：它的第二个参数是将要执行的函数。Go 里无法比较函数，所以我们无从测出传进去的是什么函数。因此，我们需要给 `time.AfterFunc` 包上一层，让它接收“什么时间执行”和“打印什么金额”，这样我们才能 spy 住它。
 
 ## 先写测试
 
@@ -148,7 +148,7 @@ var dummySpyAlerter = &SpyBlindAlerter{}
 
 然后在其他测试里用它，修好编译问题。给它标上 “dummy”（哑对象），测试的读者一眼就能看出它无关紧要。
 
-[> dummy 对象会被传来传去，但从来不会被真正用到。通常只是拿它们来凑参数列表的。](https://martinfowler.com/articles/mocksArentStubs.html)
+[> dummy 对象到处传递，却从来不会被真正用上；通常只是拿来凑参数列表的。](https://martinfowler.com/articles/mocksArentStubs.html)
 
 现在测试应该能编译了，而我们的新测试会失败。
 
@@ -162,7 +162,7 @@ var dummySpyAlerter = &SpyBlindAlerter{}
 
 ## 写足够的代码让测试通过
 
-我们需要把 `BlindAlerter` 加为 `CLI` 的一个字段，这样在 `PlayPoker` 方法里才能引用它。
+我们需要把 `BlindAlerter` 加成 `CLI` 的一个字段，这样在 `PlayPoker` 方法里才能引用它。
 
 ```go
 type CLI struct {
@@ -283,7 +283,7 @@ func (cli *CLI) PlayPoker() {
 
 ## 重构
 
-我们可以把调度提醒封装成一个方法，让 `PlayPoker` 读起来更清爽。
+我们可以把调度提醒封装成一个方法，让 `PlayPoker` 读起来更清楚一点。
 
 ```go
 func (cli *CLI) PlayPoker() {
@@ -372,7 +372,7 @@ t.Run("it schedules printing of blind values", func(t *testing.T) {
 
 我们来创建一个能在应用里用的 `BlindAlerter` 实现。
 
-新建 `blind_alerter.go`，把 `BlindAlerter` 接口挪进去，再加上下面的新东西
+新建 `blind_alerter.go`，把 `BlindAlerter` 接口挪进去，再把下面的新东西加上
 
 ```go
 package poker
@@ -416,7 +416,7 @@ poker.NewCLI(store, os.Stdin, poker.BlindAlerterFunc(poker.StdOutAlerter)).PlayP
 
 你应该能看到盲注金额像我们期望的那样每 10 秒打印一次。注意，你仍然可以在 CLI 里输入 `Shaun wins`，程序照样会像我们期望的那样停下来。
 
-扑克可不会总是 5 个人玩，所以我们需要在游戏开始前提示用户输入人数。
+一局扑克可不会总凑 5 个人玩，所以我们需要在游戏开始前提示用户输入人数。
 
 ## 先写测试
 
@@ -424,7 +424,7 @@ poker.NewCLI(store, os.Stdin, poker.BlindAlerterFunc(poker.StdOutAlerter)).PlayP
 
 这个测试暂时不关心其他协作者，所以我们在测试文件里造了几个 dummy。
 
-心里得有点数：`CLI` 现在有 4 个依赖了，感觉它承担的职责可能开始有点过多。先忍一忍，看看加这个新功能的过程中会不会自然浮现出一次重构。
+这里我们得多留个心眼：`CLI` 现在有 4 个依赖了，感觉它承担的职责可能开始有点过多。先忍一忍，看看加这个新功能的过程中会不会自然浮现出一次重构。
 
 ```go
 var dummyBlindAlerter = &SpyBlindAlerter{}
@@ -505,7 +505,7 @@ func NewCLI(store PlayerStore, in io.Reader, out io.Writer, alerter BlindAlerter
 }
 ```
 
-然后终于可以在游戏开始时写下我们的提示语了
+然后终于可以在游戏开始时把提示语写上了
 
 ```go
 func (cli *CLI) PlayPoker() {
@@ -569,7 +569,7 @@ t.Run("it prompts the user to enter the number of players", func(t *testing.T) {
 
 哎哟！改动不少。
 
-* 我们把 StdIn 的 dummy 撤掉，换成一个 mock 版输入，代表用户输入了 7
+* 我们把 StdIn 的 dummy 撤掉，换成一个 mock 版的输入，扮演输入了 7 的用户
 * 我们也把盲注提醒器上的 dummy 撤掉，这样才能看出人数对调度产生了影响
 * 我们测试调度了哪些提醒
 
@@ -589,7 +589,7 @@ t.Run("it prompts the user to enter the number of players", func(t *testing.T) {
 
 ## 写足够的代码让测试通过
 
-记住，为了让它跑起来，我们尽可以犯下各种“罪行”。等有了能工作的软件，再来收拾我们即将造出的烂摊子！
+记住，为了让它先跑起来，犯什么样的“罪行”都随我们。等有了能工作的软件，再来收拾我们即将造出的烂摊子！
 
 ```go
 func (cli *CLI) PlayPoker() {
@@ -630,7 +630,7 @@ func (cli *CLI) scheduleBlindAlerts(numberOfPlayers int) {
 * 更好的测试应该是：_给定这样的用户输入，我们是否用正确的人数调用了一个新类型 `Game`_。
 * 然后把调度相关的测试抽到新 `Game` 的测试里去。
 
-我们可以先朝 `Game` 的方向重构，测试应该会继续保持通过。等结构调整到位，再来考虑如何重构测试，让它们体现新的关注点分离
+我们可以先朝 `Game` 重构，测试应该会继续保持通过。等结构调整到位，再来考虑如何重构测试，让它们体现新的关注点分离
 
 记住，重构时的每一步改动都要尽量小，并且不断重跑测试。
 
@@ -751,7 +751,7 @@ func NewGame(alerter BlindAlerter, store PlayerStore) *Game {
 }
 ```
 
-下面是测试修好后的一个初始化样例
+下面是其中一个测试修好后的初始化代码
 
 ```go
 stdout := &bytes.Buffer{}
@@ -901,7 +901,7 @@ func (g *GameSpy) Finish(winner string) {
 
 我们需要处理这种情况：提示输入人数时，用户输入了非数字：
 
-我们的代码不应该开始游戏，而应该给用户打印一条友好的错误信息，然后退出。
+我们的代码不应该开始游戏，而应该给用户打印一条有用的错误信息，然后退出。
 
 ## 先写测试
 
@@ -1016,7 +1016,7 @@ func assertMessagesSentToUser(t testing.TB, stdout *bytes.Buffer, messages ...st
 
 花点时间想想，我们一路逼出来的这些测试哪些真正有价值。记住，测试不是越多越好——你能不能重构/删掉其中一些，_同时依然对一切正常工作充满信心_？
 
-这是我的答案
+这是我想出来的
 
 ```go
 func TestCLI(t *testing.T) {
@@ -1081,7 +1081,7 @@ func TestCLI(t *testing.T) {
 
 ### time.AfterFunc
 
-安排一个函数在指定时长之后调用，非常顺手。很值得花点时间[读读 `time` 包的文档](https://golang.org/pkg/time/)，里面有很多帮你省时间的函数和方法，随取随用。
+在指定时长之后安排一次函数调用——这是个非常称手的工具。很值得花点时间[读读 `time` 包的文档](https://golang.org/pkg/time/)，里面有很多帮你省时间的函数和方法，随取随用。
 
 我最喜欢的几个是
 
@@ -1124,13 +1124,13 @@ func (a BlindAlerterFunc) ScheduleAlertAt(duration time.Duration, amount int) {
 }
 ```
 
-这样一来，使用你的库的人只用一个函数就能实现你的接口。他们可以用[类型转换（Type Conversion）](https://go.dev/tour/basics/13)把自己的函数转成 `BlindAlerterFunc`，然后当作 BlindAlerter 来用（因为 `BlindAlerterFunc` 实现了 `BlindAlerter`）。
+这样一来，用你这个库的人只用一个函数就能实现你的接口。他们可以用[类型转换（Type Conversion）](https://go.dev/tour/basics/13)把自己的函数转成 `BlindAlerterFunc`，然后当作 BlindAlerter 来用（因为 `BlindAlerterFunc` 实现了 `BlindAlerter`）。
 
 ```go
 game := poker.NewTexasHoldem(poker.BlindAlerterFunc(poker.StdOutAlerter), store)
 ```
 
-这里更大的要点是：在 Go 里，你可以给_类型_添加方法，而不只是结构体。这个特性非常强大，你可以用它用更顺手的方式实现接口。
+往大了说，在 Go 里你可以给_类型_添加方法，而不只是结构体。这个特性非常强大，你可以用它以更顺手的方式实现接口。
 
 想想看：你不仅可以基于函数定义类型，还可以围绕其他类型定义类型，从而给它们添加方法。
 
