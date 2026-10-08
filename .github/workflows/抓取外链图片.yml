@@ -25,6 +25,9 @@ jobs:
           curl -fsSL -o docs/assets/tdd-top-down-1.png "https://i.imgur.com/pxTaYu4.png"
           curl -fsSL -o docs/assets/tdd-top-down-2.png "https://i.imgur.com/t5y5opw.png"
           curl -fsSL -o docs/assets/tdd-top-down-3.png "https://i.imgur.com/UYqd7Cq.png"
+          curl -fsSL -o docs/assets/ports-adapters-architecture.png "https://i.imgur.com/6bqovl8.png"
+          curl -fsSL -o docs/assets/fake-integration-test.png "https://i.imgur.com/9Q6FMpw.png"
+          curl -fsSL -o docs/assets/fake-contract.png "https://i.imgur.com/l9aTe2x.png"
           file docs/assets/*.png | tail -12
       - name: 提交入库
         run: |
