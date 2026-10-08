@@ -13,7 +13,7 @@
 - [HTTP 服务器](https://github.com/quii/learn-go-with-tests/blob/main/http-server.md)（英文原版）——我们将创建一个监听 HTTP 请求并作出响应的应用。
 - [JSON、路由与嵌入](https://github.com/quii/learn-go-with-tests/blob/main/json.md)（英文原版）——我们会让端点返回 JSON，并探索如何实现路由。
 - [IO 与排序](https://github.com/quii/learn-go-with-tests/blob/main/io.md)（英文原版）——我们会把数据持久化到磁盘、再从磁盘读回来，还会讲到数据排序。
-- [命令行与项目结构](https://github.com/quii/learn-go-with-tests/blob/main/command-line.md)（英文原版）——用同一份代码库支持多个应用，并从命令行读取输入。
+- [命令行与项目结构](command-line.md)——用同一份代码库支持多个应用，并从命令行读取输入。
 - [Time](https://github.com/quii/learn-go-with-tests/blob/main/time.md)（英文原版）——用 `time` 包来安排定时活动。
 - [WebSockets](https://github.com/quii/learn-go-with-tests/blob/main/websockets.md)（英文原版）——学习如何编写并测试一个使用 WebSockets 的服务器。
 
