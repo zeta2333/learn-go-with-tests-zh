@@ -83,3 +83,6 @@ nav:
       - Error types: error-types.md
       - Context-aware Reader: context-aware-reader.md
       - 再探 HTTP Handlers: http-handlers-revisited.md
+  - Meta:
+      - 为什么写单元测试，以及如何让它们为你所用: why.md
+      - 反模式: anti-patterns.md
