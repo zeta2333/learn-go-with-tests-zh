@@ -9,7 +9,8 @@ import sys
 
 
 def split_code_blocks(text):
-    return re.findall(r'^```([^\n]*)\n(.*?)^```', text, re.S | re.M)
+    # CommonMark 允许围栏缩进 0-3 个空格（roman-numerals 上游正文有一处 " ```go"）
+    return re.findall(r'^ {0,3}```([^\n]*)\n(.*?)^ {0,3}```', text, re.S | re.M)
 
 
 def strip_go_comments(code):
@@ -51,7 +52,7 @@ def clean_url(u):
 
 
 def urls(text):
-    prose = re.sub(r'^```.*?^```', '', text, flags=re.S | re.M)
+    prose = re.sub(r'^ {0,3}```.*?^ {0,3}```', '', text, flags=re.S | re.M)
     prose = re.sub(r'`[^`\n]*`', '', prose)
     inline = re.findall(r'\]\((https?://[^)\s]+)\)?', prose)
     rest = re.sub(r'\]\([^)\s]*\)', '', prose)
@@ -80,7 +81,7 @@ def main():
         if ch in tra:
             errs.append(f'引号体例：发现直角引号 {ch}（统一用弯引号 ""）')
 
-    prose = re.sub(r'^```.*?^```', '', tra, flags=re.S | re.M)
+    prose = re.sub(r'^ {0,3}```.*?^ {0,3}```', '', tra, flags=re.S | re.M)
     prose = re.sub(r'`[^`\n]*`', '', prose)
     for m in re.finditer(r'\\[.,()\[\]_!/~%-]', prose):
         errs.append(f'疑似 Gitbook 转义残留: {prose[max(0, m.start() - 15):m.start() + 15]!r}')
