@@ -8,16 +8,16 @@
 
 我们的扑克代码库里目前有两个应用
 
-* _命令行应用_。提示用户输入一局比赛的玩家数量，从那时起不断向玩家播报“盲注”（blind bet）值——这个值会随时间增长。玩家随时可以输入 `"{Playername} wins"` 来结束比赛，把胜者记录进 store。
-* _Web 应用_。让用户记录各场比赛的胜者，并展示联盟积分表。它与命令行应用共用同一个 store。
+* *命令行应用*。提示用户输入一局比赛的玩家数量，从那时起不断向玩家播报“盲注”（blind bet）值——这个值会随时间增长。玩家随时可以输入 `"{Playername} wins"` 来结束比赛，把胜者记录进 store。
+* *Web 应用*。让用户记录各场比赛的胜者，并展示联盟积分表。它与命令行应用共用同一个 store。
 
 ## 下一步
 
 产品负责人对命令行应用满意得很，但她更希望我们能把这些功能搬进浏览器。她设想了这样一个网页：有个文本框让用户输入玩家数量；提交表单后，页面显示出盲注值，并且到了该涨的时候自动更新。跟命令行应用一样，用户可以宣布胜者，然后保存进数据库。
 
-乍一听相当简单，但跟往常一样，我们必须强调用_迭代_的方式写软件。
+乍一听相当简单，但跟往常一样，我们必须强调用*迭代*的方式写软件。
 
-首先我们得能把 HTML 返回给用户。到目前为止，我们的 HTTP 端点返回的要么是纯文本，要么是 JSON。我们_可以_继续用已掌握的那些招数（反正说到底都是字符串），但用 [html/template](https://golang.org/pkg/html/template/) 包会有更干净的方案。
+首先我们得能把 HTML 返回给用户。到目前为止，我们的 HTTP 端点返回的要么是纯文本，要么是 JSON。我们*可以*继续用已掌握的那些招数（反正说到底都是字符串），但用 [html/template](https://golang.org/pkg/html/template/) 包会有更干净的方案。
 
 我们还需要能异步地给用户发消息，告诉他们 `The blind is now *y*`，而不必刷新浏览器。这可以借助 [WebSockets](https://en.wikipedia.org/wiki/WebSocket) 来实现。
 
@@ -66,7 +66,7 @@ func NewPlayerServer(store PlayerStore) *PlayerServer {
 }
 ```
 
-眼下我们能做的_最简单_的事，就是确认请求 `GET /game` 能拿到一个 `200`。
+眼下我们能做的*最简单*的事，就是确认请求 `GET /game` 能拿到一个 `200`。
 
 ```go
 func TestGame(t *testing.T) {
@@ -180,8 +180,8 @@ func TestGame(t *testing.T) {
 办法有好几种。正像全书反复强调的：你写的测试必须物有所值，收益要配得上成本。
 
 1. 写基于浏览器的测试，比如用 Selenium 这类工具。这类测试在所有方案里最“真实”，因为它们会真的启动某种浏览器，模拟用户与它交互。这种测试能给你很大的信心，但比单元测试难写，跑起来也慢得多。就我们这款产品而言，这属于杀鸡用牛刀。
-2. 做精确的字符串比对。这_有时候_也行，但这类测试往往非常脆弱：只要有人动了标记，测试就挂，而实际上根本没_真的_坏掉什么。
-3. 检查我们调用的是正确的模板。我们将用标准库的模板库来返回 HTML（稍后讨论），可以把生成 HTML 的那个_东西_注入进来，spy 它的调用，确认我们做得对。这会影响代码的设计，却又验不出太多东西——顶多证明我们用了正确的模板文件。鉴于整个项目只会有这一个模板，这里出岔子的概率看起来很低。
+2. 做精确的字符串比对。这*有时候*也行，但这类测试往往非常脆弱：只要有人动了标记，测试就挂，而实际上根本没*真的*坏掉什么。
+3. 检查我们调用的是正确的模板。我们将用标准库的模板库来返回 HTML（稍后讨论），可以把生成 HTML 的那个*东西*注入进来，spy 它的调用，确认我们做得对。这会影响代码的设计，却又验不出太多东西——顶多证明我们用了正确的模板文件。鉴于整个项目只会有这一个模板，这里出岔子的概率看起来很低。
 
 所以在《Learn Go with Tests》这本书里，我们将头一次不写测试。
 
@@ -206,7 +206,7 @@ func (p *PlayerServer) game(w http.ResponseWriter, r *http.Request) {
 
 既然没写测试，稳妥起见还是手动跑一下 web 服务器，确认一切符合预期。进入 `cmd/webserver` 目录运行 `main.go`，然后访问 `http://localhost:5000/game`。
 
-你_应该_会看到一个找不到模板的报错。你可以把路径改成相对当前目录的路径，也可以往 `cmd/webserver` 目录里放一份 `game.html`。我的选择是给项目根目录里的那份文件建一个符号链接（`ln -s ../../game.html game.html`），这样模板一有改动，运行服务器时就能直接生效。
+你*应该*会看到一个找不到模板的报错。你可以把路径改成相对当前目录的路径，也可以往 `cmd/webserver` 目录里放一份 `game.html`。我的选择是给项目根目录里的那份文件建一个符号链接（`ln -s ../../game.html game.html`），这样模板一有改动，运行服务器时就能直接生效。
 
 改完再跑一次，你应该就能看到我们的界面了。
 
@@ -324,7 +324,7 @@ AssertPlayerWin(t, store, winner)
 
 为了让测试跑起来，我们在服务器代码和测试代码里都犯下了不少“罪行”，但记住，这就是对我们来说最省事的工作方式。
 
-我们手里有了又糟又烂、但_能跑_的软件，背后还有测试撑腰。现在可以放心把它打磨漂亮，并且确信不会一不小心弄坏什么。
+我们手里有了又糟又烂、但*能跑*的软件，背后还有测试撑腰。现在可以放心把它打磨漂亮，并且确信不会一不小心弄坏什么。
 
 先从服务器代码开始。
 
@@ -423,7 +423,7 @@ func writeWSMessage(t testing.TB, conn *websocket.Conn, message string) {
 }
 ```
 
-现在测试都过了，试着把服务器跑起来，在 `/game` 页面上宣布几个胜者。你应该能在 `/league` 里看到记录。记住：每收到一个胜者我们就会_关闭连接_，你得刷新页面才能重新建立连接。
+现在测试都过了，试着把服务器跑起来，在 `/game` 页面上宣布几个胜者。你应该能在 `/league` 里看到记录。记住：每收到一个胜者我们就会*关闭连接*，你得刷新页面才能重新建立连接。
 
 我们做出了一个不起眼但能用的网页表单，让用户可以记录比赛的胜者。接下来在它上面继续迭代：让用户输入玩家数量来开局，服务器则随时间推移向客户端推送消息，告知当前的盲注值。
 
@@ -530,7 +530,7 @@ type TexasHoldem struct {
 }
 ```
 
-通过传入一个 `BlindAlerter`，`TexasHoldem` 就能把盲注提醒安排发往_任何地方_
+通过传入一个 `BlindAlerter`，`TexasHoldem` 就能把盲注提醒安排发往*任何地方*
 
 ```go
 type BlindAlerter interface {
@@ -548,7 +548,7 @@ func StdOutAlerter(duration time.Duration, amount int) {
 }
 ```
 
-它在 CLI 里行得通，是因为我们_始终想把提醒发给 `os.Stdout`_，但这对我们的 web 服务器行不通：每来一个请求，都会拿到一个新的 `http.ResponseWriter`，随后被升级为 `*websocket.Conn`。所以在组装依赖的那一刻，我们无从知道提醒该发往何处。
+它在 CLI 里行得通，是因为我们*始终想把提醒发给 `os.Stdout`*，但这对我们的 web 服务器行不通：每来一个请求，都会拿到一个新的 `http.ResponseWriter`，随后被升级为 `*websocket.Conn`。所以在组装依赖的那一刻，我们无从知道提醒该发往何处。
 
 因此我们需要修改 `BlindAlerter.ScheduleAlertAt`，让它接收一个提醒的目的地，这样才能在 web 服务器里复用。
 
@@ -576,11 +576,11 @@ func Alerter(duration time.Duration, amount int, to io.Writer) {
 }
 ```
 
-这时编译会在 `TexasHoldem` 上失败，因为它调用 `ScheduleAlertAt` 时没有给目的地；_眼下_为了让编译先过，把它硬编码成 `os.Stdout`。
+这时编译会在 `TexasHoldem` 上失败，因为它调用 `ScheduleAlertAt` 时没有给目的地；*眼下*为了让编译先过，把它硬编码成 `os.Stdout`。
 
 跑一下测试，会失败，因为 `SpyBlindAlerter` 不再实现 `BlindAlerter` 了；更新 `ScheduleAlertAt` 的签名修好它，再跑测试，我们应该还是绿的。
 
-让 `TexasHoldem` 知道盲注提醒发往哪里并不合理。现在来改 `Game`，让你在开局时声明提醒应该发到_哪儿_。
+让 `TexasHoldem` 知道盲注提醒发往哪里并不合理。现在来改 `Game`，让你在开局时声明提醒应该发到*哪儿*。
 
 ```go
 type Game interface {
@@ -732,7 +732,7 @@ func (p *PlayerServer) webSocket(w http.ResponseWriter, r *http.Request) {
 
 万岁！测试全过了。
 
-我们_暂时_还不打算把盲注消息发到任何地方，因为这事儿得先好好想想。调用 `game.Start` 时我们传的是 `io.Discard`，凡是写进它的消息都会被丢掉。
+我们*暂时*还不打算把盲注消息发到任何地方，因为这事儿得先好好想想。调用 `game.Start` 时我们传的是 `io.Discard`，凡是写进它的消息都会被丢掉。
 
 眼下先把 web 服务器跑起来。你需要更新 `main.go`，把一个 `Game` 传给 `PlayerServer`
 
@@ -762,7 +762,7 @@ func main() {
 }
 ```
 
-先不提还收不到盲注提醒这件事，应用确实能跑了！我们成功地在 `PlayerServer` 里复用了 `Game`，所有细节都由它打理。等我们弄清楚怎么把盲注提醒经由 WebSocket 发出去而不是一丢了之，一切_应该_就都通了。
+先不提还收不到盲注提醒这件事，应用确实能跑了！我们成功地在 `PlayerServer` 里复用了 `Game`，所有细节都由它打理。等我们弄清楚怎么把盲注提醒经由 WebSocket 发出去而不是一丢了之，一切*应该*就都通了。
 
 不过在那之前，先收拾一下代码。
 
@@ -811,7 +811,7 @@ func (p *PlayerServer) webSocket(w http.ResponseWriter, r *http.Request) {
 
 等我们搞定“不丢弃盲注消息”这件事，就大功告成了。
 
-### 这次我们_偏不_写测试！
+### 这次我们*偏不*写测试！
 
 有些时候，对一件事该怎么做没把握，最好的办法就是上手玩一玩、试一试！先确保手头的代码已经 commit，因为一旦摸索出思路，我们就该通过测试把它正式驱动出来。
 
@@ -823,7 +823,7 @@ p.game.Start(numberOfPlayers, io.Discard) //todo: 别把盲注消息丢掉了！
 
 我们需要传给游戏一个 `io.Writer`，让它把盲注提醒写进去。
 
-要是能把之前那个 `playerServerWS` 传进去岂不美哉？它是我们对 WebSocket 的包装，_感觉上_就应该能把它交给 `Game`，让消息发往那里。
+要是能把之前那个 `playerServerWS` 传进去岂不美哉？它是我们对 WebSocket 的包装，*感觉上*就应该能把它交给 `Game`，让消息发往那里。
 
 试试看：
 
@@ -845,7 +845,7 @@ func (p *PlayerServer) webSocket(w http.ResponseWriter, r *http.Request) {
 	*playerServerWS does not implement io.Writer (missing Write method)
 ```
 
-顺理成章的做法，似乎就是让 `playerServerWS` _真正_实现 `io.Writer`。为此，我们用底层的 `*websocket.Conn`，通过 `WriteMessage` 把消息顺着这条 websocket 发出去
+顺理成章的做法，似乎就是让 `playerServerWS` *真正*实现 `io.Writer`。为此，我们用底层的 `*websocket.Conn`，通过 `WriteMessage` 把消息顺着这条 websocket 发出去
 
 ```go
 func (w *playerServerWS) Write(p []byte) (n int, err error) {
@@ -869,9 +869,9 @@ blindIncrement := time.Duration(5+numberOfPlayers) * time.Second // 而不是一
 
 应该能看到它跑起来了！盲注金额在浏览器里自己往上涨，像变魔法一样。
 
-现在把代码还原，想想怎么测试它。刚才为了_实现_这个功能，我们所做的一切就是把传给 `Start` 的参数从 `io.Discard` 换成了 `playerServerWS`，这也许会让你想到：或许可以 spy 那次调用，验证它真的发生了。
+现在把代码还原，想想怎么测试它。刚才为了*实现*这个功能，我们所做的一切就是把传给 `Start` 的参数从 `io.Discard` 换成了 `playerServerWS`，这也许会让你想到：或许可以 spy 那次调用，验证它真的发生了。
 
-Spy 很好用，能帮我们检查实现细节，但只要条件允许，我们总应优先测试_真实行为_。因为等你决定重构时，往往正是 spy 测试最先挂掉——它们检查的通常恰恰是你要改掉的实现细节。
+Spy 很好用，能帮我们检查实现细节，但只要条件允许，我们总应优先测试*真实行为*。因为等你决定重构时，往往正是 spy 测试最先挂掉——它们检查的通常恰恰是你要改掉的实现细节。
 
 我们的测试目前是开一条 websocket 连接连到运行中的服务器，然后发消息让它干活。同样地，我们也应该能测试服务器通过这条 websocket 连接发回来的消息。
 
