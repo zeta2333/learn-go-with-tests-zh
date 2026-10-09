@@ -1,0 +1,8 @@
+/* 侧边栏分节标题（Go 基础 / 测试基础 / 构建应用 / 问答 / Meta）：
+   用主题色与普通章节拉开区分，深浅色模式均生效。
+   带 [for] 的那条是主题在桌面端设置灰色的规则，需同等优先级才能覆盖 */
+.md-nav__item--section > .md-nav__link,
+.md-nav__item--section > .md-nav__link[for] {
+  color: var(--md-primary-fg-color);
+  font-weight: 700;
+}
